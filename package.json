@@ -1,0 +1,11 @@
+{
+  "name": "filefinder",
+  "version": "1.0.0",
+  "description": "Finds a file in the directory structure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gabriele Bianchet-David",
+  "license": "ISC"
+}
