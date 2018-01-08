@@ -1,27 +1,32 @@
 'use strict';
 
 class Queue {
-    private q;
-    private l;
+  constructor() {
+    this._q = [];
+    this._l = 0;
+  }
 
-    constructor() {
-        this.q = [];
-        this.l = 0;
+  enqueue(items) {
+    if (items instanceof Array) {
+      this._l = this._q.push(...items);
+    } else {
+      this._l = this._q.push(items);
     }
+  }
 
-    enqueue(...items) {
-        this.l = this.q.push(items);
-    }
+  dequeue() {
+    let el = this._q.splice(0, 1)[0];
+    this._l = this._q.length;
+    return el;
+  }
 
-    dequeue() {
-        return this.q.splice(0, 1);
-    }
+  peek() {
+    return this._q[0];
+  }
 
-    peek() {
-        return this.q[0];
-    }
-
-    length() {
-        return this.l;
-    }
+  length() {
+    return this._l;
+  }
 }
+
+module.exports = Queue;
