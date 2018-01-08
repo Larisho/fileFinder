@@ -1,5 +1,6 @@
 "use strict";
 
+// TODO: Add switch (or make default) searching by contains and not equals
 // TODO: Add switch for exit on find as opposed to finding all matches
 
 let path = require('path');
