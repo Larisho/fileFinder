@@ -19,7 +19,7 @@ baseDir = path.resolve(baseDir);
 let ret = walk(baseDir, file);
 
 if (ret === 'File not found') {
-  process.write(ret);
+  process.stderr.write(ret + '\n');
   process.exit(-1);
 } else {
   process.stdout.write(ret + '\n');

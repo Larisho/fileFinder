@@ -15,7 +15,12 @@ module.exports = function (baseDir, file) {
       return path.resolve(item);
     }
 
-    let itemStats = fs.lstatSync(item);
+    let itemStats;
+    try {
+      itemStats = fs.lstatSync(item);
+    } catch (e) {
+      continue;
+    }
     if (itemStats.isDirectory()) {
       queue.enqueue(readdirSyncFullPath(item));
     }
@@ -25,8 +30,13 @@ module.exports = function (baseDir, file) {
 };
 
 function readdirSyncFullPath(dir) {
+  try {
+    fs.accessSync(dir, fs.R_OK);
+  } catch (e) {
+    return [];
+  }
   return fs.readdirSync(dir, {encoding: 'utf8'}).map((val) => {
-    return dir + path.sep + val;
+    return dir + (dir === '/' ? '' : path.sep) + val;
   })
 }
 
